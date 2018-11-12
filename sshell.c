@@ -22,11 +22,9 @@ int main(void)
 	char **string = NULL;
 	size_t size = 0;
 	int len;
-	int i, status;
-	char *args[4];
+	int status;
 	pid_t parent;
 
-	i = 0;	
 	while (1)
 	{
 		parent = fork();	
@@ -43,13 +41,7 @@ int main(void)
 			ptr[len - 1] = '\0';
 			string = strtow(ptr);
 
-			while (string[i] != NULL)
-			{
-				args[i] = string[i];
-				i += 1;
-			}
-			args[i] = NULL;
-			if (execve(args[0], args, NULL) == -1)
+			if (execve(string[0], string, NULL) == -1)
 				perror("Error\n");
 		}
 		else
