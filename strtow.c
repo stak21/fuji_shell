@@ -9,16 +9,18 @@
 */
 
 char **strtow(char *str);
+void get_word(char **array, char *str);
+int word_count(char *str);
 void cpy_str(int end, char *s, char **word_box);
 
 char  **strtow(char *str)
 {
 	char **words;
-	int i, start, found;
-	unsigned int count;
+	int count;
 
-	start = i = 0;
-	count = word_count;	
+	count = word_count(str);	
+	if (count == -1)
+		return (NULL);
 
 	words = malloc(sizeof(char *) * (count + 1));
 	if (!words)
@@ -26,7 +28,7 @@ char  **strtow(char *str)
 		free(words);
 		return (NULL);
 	}
-	get_word(words);
+	get_word(words, str);
 
 
 	return (words);
@@ -54,13 +56,13 @@ void cpy_str(int end, char *s, char **word_box)
 * Return: the number of words in a string
 */
 
-unsigned int word_count(char *str)
+int word_count(char *str)
 {
 	unsigned int count, i;
 	int found;
 
 	if (str == NULL || *str == '\0')
-		return (NULL);
+		return (-1);
 
 	found = i = count = 0;
 
@@ -69,7 +71,7 @@ unsigned int word_count(char *str)
 		if (str[i] == ' ' || str[i + 1] == '\0')
 		{
 			if (count == 0 && str[i + 1] == '\0' && str[i] == ' ')
-				return (NULL);
+				return (-1);
 			if (found)
 			{
 				count += 1;
@@ -89,9 +91,9 @@ unsigned int word_count(char *str)
 * @str: a pointer to the string
 * Return: the array of words 
 */
-void get_word(char **array)
+void get_word(char **words, char *str)
 {
-	char *str = *array;	
+	int i, start, found, count;
 
 	count = i = start = found = 0;
 
@@ -105,7 +107,7 @@ void get_word(char **array)
 					i += 1;
 				cpy_str(i - start, str + start, words + count);
 				if (!(words + count))
-					return (NULL);
+					exit(-2);
 				count += 1;
 				start = i + 1;
 				found = 0;
