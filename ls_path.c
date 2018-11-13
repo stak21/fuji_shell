@@ -2,7 +2,6 @@
 
 /**
 * ls_path - lists the directories in the PATH env
-* 
 */
 
 void ls_path(void)
