@@ -17,25 +17,31 @@ int main(void)
 
 	while (1)
 	{
+		printf("Shell$: ");
+		len = getline(&ptr, &size, stdin);
+		ptr[len - 1] = '\0';
 		parent = fork();	
-		if (!parent)
+		if (parent == 0)
 		{
-			printf("Shell$: ");
-			len = getline(&ptr, &size, stdin);
-			if (len == -1)
+			if (len == -1 || _strcmp(ptr, "exit") == 1)
 			{
 				dprintf(2, "Exiting\n");
-				free(string);
+				free(ptr);
 				exit(-1);
 			}
-			ptr[len - 1] = '\0';
 			string = strtow(ptr);
 
 			if (execve(string[0], string, NULL) == -1)
 				perror("Error\n");
 		}
 		else
+		{
 			wait(&status);
+			free(ptr);
+			ptr = NULL;
+			if (status != 0)
+				break;
+		}
 	}
 			printf("ending\n");	
 	return (0);
