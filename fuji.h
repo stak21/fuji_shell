@@ -12,7 +12,9 @@
 #include <string.h>
 #include <limits.h>
 
+void ls_path(void);
 char *_memcpy(char *dest, char *src, unsigned int n);
+char *_getenv(const char *name);
 int _strlen(char *s);
 int _strcmp(const char *s1, const char *s2);
 int _which(int argc, char *argv[]);
