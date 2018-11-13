@@ -1,20 +1,10 @@
-#define _GNU_SOURCE
-#include <sys/wait.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <string.h>
-#include <limits.h>
+#include "fuji.h"
 
 /**
 * main - Entry point
 *
 * Return: Always 0 (Success)
 */
-char **strtow(char *str);
 
 int main(void)
 {

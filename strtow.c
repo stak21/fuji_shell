@@ -1,17 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-
+#include "fuji.h"
 /**
 * strtow - splits a string into words
 * @str: a pointer to the string
 * Return: a pointer to an array
 */
-
-char **strtow(char *str);
-void get_word(char **array, char *str);
-int word_count(char *str);
-void cpy_str(int end, char *s, char **word_box);
 
 char  **strtow(char *str)
 {
