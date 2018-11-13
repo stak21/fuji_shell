@@ -8,7 +8,9 @@
 lp_t *linked_PATH(void)
 {
 	char *path;
+	int len;
 	lp_t *head;
+	char *str1;
 	int i, start;
 
 	head = NULL;
@@ -19,6 +21,8 @@ lp_t *linked_PATH(void)
 		if (path[i] == ':' || path[i + 1] == '\0')
 		{
 			len = i - start;
+			if (path[i + 1] == '\0')
+				len += 1;
 			str1 = malloc(sizeof(char) * len + 1);
 			str1 = _memcpy(str1, path + start, len);
 			str1[len + 1] = '\0';
@@ -29,17 +33,3 @@ lp_t *linked_PATH(void)
 	}
 	return (head);
 }
-
-int main(void);
-{
-	lp_t *list;
-
-	list = linked_PATH();
-	while (list->next != NULL)
-	{
-		printf("%s\n", list->dir)
-		list = list->next;
-	}
-	return (0);
-}	
-			
