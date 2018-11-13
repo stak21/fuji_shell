@@ -12,6 +12,18 @@
 #include <string.h>
 #include <limits.h>
 
+/**
+ * struct linked_PATH - singly linked list of PATH directories
+ * @dir: directories
+ * @next: pointer to the next node
+ *
+ * Description: singly linked list node structure for PATH directories
+ */
+typedef struct linked_PATH
+{
+	char *dir;
+	struct linked_PATH *next;
+} lp_t;
 void ls_path(void);
 char *_memcpy(char *dest, char *src, unsigned int n);
 char *_getenv(const char *name);
@@ -22,4 +34,5 @@ char **strtow(char *str);
 void get_word(char **array, char *str);
 int word_count(char *str);
 void cpy_str(int end, char *s, char **word_box);
+
 #endif
