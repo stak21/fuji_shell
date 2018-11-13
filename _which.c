@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 	{
 		if (stat(argv[i], &st) == 0)
 		{
-			len = strlen(argv[i]);
+			len = _strlen(argv[i]);
 			argv[i][len] = '\n';
 			write(2, argv[i], len + 1);
 		}
