@@ -12,6 +12,9 @@
 #include <string.h>
 #include <limits.h>
 
+char *_memcpy(char *dest, char *src, unsigned int n);
+int _strlen(char *s);
+int _strcmp(const char *s1, const char *s2);
 int _which(int argc, char *argv[]);
 char **strtow(char *str);
 void get_word(char **array, char *str);
