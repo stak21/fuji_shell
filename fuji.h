@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <limits.h>
+
+int _which(int argc, char *argv[]);
 char **strtow(char *str);
 void get_word(char **array, char *str);
 int word_count(char *str);
