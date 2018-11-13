@@ -24,6 +24,8 @@ typedef struct linked_PATH
 	char *dir;
 	struct linked_PATH *next;
 } lp_t;
+
+lp_t *add_node_end(lp_t **head, char *str);
 void ls_path(void);
 char *_memcpy(char *dest, char *src, unsigned int n);
 char *_getenv(const char *name);
