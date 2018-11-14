@@ -24,17 +24,12 @@ int main(int argc, char **argv)
 	/** inline */
 	if (argc > 1)
 	{
-		non_interactive = 1;
 		if (execve(argv[1], argv + 1, NULL) == -1)
 		{
 			perror("./shell");
 			exit(0);
 		}
 	}
-		
-		
-
-
 
 	while (1)
 	{
@@ -53,7 +48,7 @@ int main(int argc, char **argv)
 				exit(-1);
 			}
 			string = strtow(ptr);
-
+			check_path(string);
 			if (execve(string[0], string, NULL) == -1)
 			{
 				perror("./shell");
