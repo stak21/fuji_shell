@@ -2,7 +2,6 @@
 
 /**
 * main - Entry point
-*
 * Return: Always 0 (Success)
 */
 
@@ -14,14 +13,20 @@ int main(void)
 	int len;
 	int status;
 	pid_t parent;
-	int i = 0;
+	int non_interactive;
 
-	while (i < 3)
+	non_interactive = 0;
+
+	/** pipe */
+	if (!isatty(fileno(stdin)))
+		non_interactive = 1;
+
+
+	while (1)
 	{
-		printf("Shell$: ");
+		write(2, "Fuji$ ", 6);
 		len = getline(&ptr, &size, stdin);
 		ptr[len - 1] = '\0';
-		printf("test\n");
 		parent = fork();	
 		if (parent == 0)
 		{
@@ -40,17 +45,15 @@ int main(void)
 				perror("./shell");
 				exit(0);
 			}
-			printf("childs\n\n\n\n");
 		}
 		else
 		{
 			wait(&status);
 			free(ptr);
 			ptr = NULL;
-			if (status != 0)
+			if (status != 0 || non_interactive)
 				break;
 		}
-		i += 1;
 	}
 
 			printf("ending\n");	
