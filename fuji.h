@@ -37,5 +37,7 @@ char **strtow(char *str);
 void get_word(char **array, char *str);
 int word_count(char *str);
 void cpy_str(int end, char *s, char **word_box);
-
+char *str_concat(char *s1, char *s2);
+void check_path(char **string);
+void free_lp(char *str1, lp_t *head);
 #endif
