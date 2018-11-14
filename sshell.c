@@ -5,7 +5,7 @@
 * Return: Always 0 (Success)
 */
 
-int main(void)
+int main(int argc, char **argv)
 {
 	char *ptr = NULL;
 	char **string = NULL;
@@ -20,6 +20,20 @@ int main(void)
 	/** pipe */
 	if (!isatty(fileno(stdin)))
 		non_interactive = 1;
+	
+	/** inline */
+	if (argc > 1)
+	{
+		non_interactive = 1;
+		if (execve(argv[1], argv + 1, NULL) == -1)
+		{
+			perror("./shell");
+			exit(0);
+		}
+	}
+		
+		
+
 
 
 	while (1)
@@ -32,7 +46,7 @@ int main(void)
 		{
 			if (*ptr == '\0')
 				exit(0);
-			if (len == -1 || _strcmp(ptr, "exit") == 1)
+			if (len == -1)
 			{
 				dprintf(2, "Exiting\n");
 				free(ptr);
