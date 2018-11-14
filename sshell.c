@@ -17,10 +17,6 @@ int main(int argc, char **argv)
 
 	non_interactive = 0;
 
-	/** pipe */
-	if (!isatty(fileno(stdin)))
-		non_interactive = 1;
-	
 	/** inline */
 	if (argc > 1)
 	{
@@ -31,21 +27,19 @@ int main(int argc, char **argv)
 		}
 	}
 
-	while (1)
+	while (!non_interactive)
 	{
-		write(2, "Fuji$ ", 6);
-		len = getline(&ptr, &size, stdin);
+	write(2, "Fuji$ ", 6);
+	if((len = getline(&ptr, &size, stdin)) == -1)
+		non_interactive = 1;
 		ptr[len - 1] = '\0';
 		parent = fork();	
 		if (parent == 0)
 		{
 			if (*ptr == '\0')
-				exit(0);
-			if (len == -1)
 			{
-				dprintf(2, "Exiting\n");
 				free(ptr);
-				exit(-1);
+				exit(0);
 			}
 			string = strtow(ptr);
 			check_path(string);
