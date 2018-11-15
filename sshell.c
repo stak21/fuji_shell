@@ -29,34 +29,35 @@ int main(int argc, char **argv)
 
 	while (!non_interactive)
 	{
-	write(2, "Fuji$ ", 6);
-	if((len = getline(&ptr, &size, stdin)) == -1)
-		non_interactive = 1;
-		ptr[len - 1] = '\0';
-		parent = fork();	
-		if (parent == 0)
-		{
-			if (*ptr == '\0')
+		if (isatty(fileno(stdin)))
+			write(2, "Fuji$ ", 6);
+		if((len = getline(&ptr, &size, stdin)) == -1)
+			non_interactive = 1;
+			ptr[len - 1] = '\0';
+			parent = fork();	
+			if (parent == 0)
 			{
+				if (*ptr == '\0')
+				{
+					free(ptr);
+					exit(0);
+				}
+				string = strtow(ptr);
+				check_path(string);
+				if (execve(string[0], string, NULL) == -1)
+				{
+					perror("./shell");
+					exit(0);
+				}
+			}
+			else
+			{
+				wait(&status);
 				free(ptr);
-				exit(0);
+				ptr = NULL;
+				if (status != 0 || non_interactive)
+					break;
 			}
-			string = strtow(ptr);
-			check_path(string);
-			if (execve(string[0], string, NULL) == -1)
-			{
-				perror("./shell");
-				exit(0);
-			}
-		}
-		else
-		{
-			wait(&status);
-			free(ptr);
-			ptr = NULL;
-			if (status != 0 || non_interactive)
-				break;
-		}
 	}
 
 			printf("ending\n");	
