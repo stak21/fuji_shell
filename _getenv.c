@@ -24,6 +24,8 @@ char *_getenv(const char *name)
 				j += 1;
 			len -= j;
 			ret_ptr = malloc(sizeof(char) * len + 1);
+			if (!ret_ptr)
+				return (NULL);
 			return (ret_ptr = _memcpy(ret_ptr, environ[i] + (j + 1), len + 1));		
 		}
 		i++;

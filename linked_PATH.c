@@ -27,9 +27,12 @@ lp_t *linked_PATH(void)
 			str1 = _memcpy(str1, path + start, len);
 			str1[len + 1] = '\0';
 			start = i + 1;
-			add_node_end(&head, str1);
+			if (add_node_end(&head, str1) == NULL)
+				perror("Error: adding node\n");
 		}
 		i++;
 	}
+	free(str1);
+	free(path);
 	return (head);
 }

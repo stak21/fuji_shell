@@ -37,12 +37,16 @@ int main(int argc, char **argv)
 			parent = fork();	
 			if (parent == 0)
 			{
-				if (*ptr == '\0')
+				if (*ptr == '\0' || (!(string = strtow(ptr))))
 				{
 					free(ptr);
 					exit(0);
 				}
-				string = strtow(ptr);
+				if((string = strtow(ptr)) == NULL)
+				{
+					free(ptr);
+					exit(0);
+				}
 				check_path(string);
 				if (execve(string[0], string, NULL) == -1)
 				{

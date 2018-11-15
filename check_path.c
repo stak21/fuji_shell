@@ -12,6 +12,7 @@ void check_path(char **string)
 
 	head = linked_PATH();
 	tmp = head;
+		
 	str1 = str_concat("/", string[0]);
 	while (tmp != NULL)
 	{
