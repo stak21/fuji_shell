@@ -49,6 +49,7 @@ void check_path(char **string)
 			}
 			if (access(str2, F_OK) == 0)
 			{
+				free(string[0]);
 				string[0] = str2;
 				free(str1);
 				return;

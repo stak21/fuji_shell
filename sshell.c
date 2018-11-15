@@ -7,6 +7,7 @@
 
 int main(int argc, char **argv)
 {
+	int ind = 0;
 	char *ptr = NULL;
 	char **string = NULL;
 	size_t size = 0;
@@ -27,17 +28,26 @@ int main(int argc, char **argv)
 		}
 	}
 
-	while (!non_interactive)
+	while (1)
 	{
-		if (isatty(fileno(stdin)))
-			write(2, "Fuji$ ", 6);
+			if (isatty(fileno(stdin)))
+				write(2, "Fuji$ ", 6);
+			if((len = getline(&ptr, &size, stdin)) == EOF)
+			{
+				free(ptr);
+				exit(-1);
+			}
+			ptr[len - 1] = '\0';
+			printf("hillo\n");
 			parent = fork();	
 			if (parent == 0)
 			{
-				if((len = getline(&ptr, &size, stdin)) == -1)
-					non_interactive = 1;
-				ptr[len - 1] = '\0';
-				if (*ptr == '\0' || (!(string = strtow(ptr))))
+				if (*ptr == '\0' || (*ptr == '.' && ptr[1] =='\0'))
+				{
+					free(ptr);
+					exit(0);
+				}
+				if (!(string = strtow(ptr)))
 				{
 					free(ptr);
 					exit(0);
@@ -48,6 +58,13 @@ int main(int argc, char **argv)
 				if (execve(string[0], string, NULL) == -1)
 				{
 					perror("./shell");
+					while (string[ind])
+					{
+						free(string[ind]);
+						ind += 1;
+					}
+					free(string);			
+					free(ptr);
 					exit(0);
 				}
 			}
