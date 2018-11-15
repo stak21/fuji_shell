@@ -9,17 +9,13 @@ char  **strtow(char *str)
 {
 	char **words;
 	int count;
-
 	count = word_count(str);	
-	if (count == -1)
+		if (count == -1)
 		return (NULL);
 
 	words = malloc(sizeof(char *) * (count + 1));
 	if (!words)
-	{
-		free(words);
 		return (NULL);
-	}
 	get_word(words, str);
 
 
@@ -36,7 +32,13 @@ void cpy_str(int end, char *s, char **word_box)
 {
 	int i;
 
-	(*word_box) = malloc(sizeof(char) * end + 1);
+	if (!((*word_box) = malloc(sizeof(char) * end + 1)))
+	{
+		perror("Error: malloc\n");
+		free(word_box);
+		exit(-1);
+	}
+	
 	for (i = 0; i < end; i += 1)
 		(*word_box)[i] = s[i];
 	(*word_box)[i] = '\0';
@@ -58,12 +60,14 @@ int word_count(char *str)
 
 	found = i = count = 0;
 
+	if (str[1] == '\0' && *str == ' ')
+		return (-1);
 	while (str[i] != '\0')
 	{
 		if (str[i] == ' ' || str[i + 1] == '\0')
 		{
-			if (count == 0 && str[i + 1] == '\0' && str[i] == ' ')
-				return (-1);
+			if (str[i] != ' ')
+				found = 1;
 			if (found)
 			{
 				count += 1;
@@ -93,10 +97,14 @@ void get_word(char **words, char *str)
 	{
 		if (str[i] == ' ' || str[i + 1] == '\0')
 		{
+			if (str[i] != ' ')
+			{
+				i += 1;
+				found = 1;
+			}
 			if (found)
 			{
-				if (str[i + 1] == '\0')
-					i += 1;
+				
 				cpy_str(i - start, str + start, words + count);
 				if (!(words + count))
 					exit(-2);
@@ -107,6 +115,7 @@ void get_word(char **words, char *str)
 				if (str[i] == '\0')
 					continue;
 			i += 1;
+			start += 1;
 			continue;
 		}
 		else
@@ -117,6 +126,5 @@ void get_word(char **words, char *str)
 		}
 		i += 1;
 	}
-
 	words[count] = NULL;
 }

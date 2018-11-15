@@ -10,10 +10,8 @@ char *_getenv(const char *name)
 {
 	int i, j;
 	int res, len;
-	char *ret_ptr;
 
 	i = j = 0;
-	ret_ptr = NULL;
 	while (environ[i] != NULL)
 	{
 		res = _strcmp(name, (const char *)environ[i]);
@@ -23,10 +21,7 @@ char *_getenv(const char *name)
 			while (environ[i][j] != '=')
 				j += 1;
 			len -= j;
-			ret_ptr = malloc(sizeof(char) * len + 1);
-			if (!ret_ptr)
-				return (NULL);
-			return (ret_ptr = _memcpy(ret_ptr, environ[i] + (j + 1), len + 1));		
+			return (environ[i] + j + 1);
 		}
 		i++;
 	}
