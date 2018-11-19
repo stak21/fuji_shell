@@ -37,7 +37,7 @@ typedef struct linked_PATH
 typedef struct builtins
 {
 	char *cmd;
-	void (*f)(char **args);
+	void (*f)(char **args, char **env);
 } built_t;
 /* Function Declarations for builtin shell commands */
 void fuji_env(char **args, char **env);
