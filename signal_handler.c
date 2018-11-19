@@ -2,7 +2,7 @@
 
 /**
  * signal_handler - reprints prompt when signal ctrl+C is captured
- * @signo - signal number
+ * @signo: signal number
  */
 void signal_handler(int signo)
 {

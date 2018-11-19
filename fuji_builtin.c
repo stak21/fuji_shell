@@ -2,7 +2,8 @@
 
 /**
  * fuji_env - prints environmental variable
- * @args - array of arguments
+ * @args: array of arguments
+ * @env: array of env vars
  */
 void fuji_env(char **args, char **env)
 {
@@ -21,7 +22,8 @@ void fuji_env(char **args, char **env)
 
 /**
  * fuji_exit - exits the shells
- * @args - array of arguments
+ * @args: array of arguments
+ * @env: array of env vars
  */
 void fuji_exit(char **args, char **env)
 {
@@ -32,7 +34,8 @@ void fuji_exit(char **args, char **env)
 }
 /**
  * fuji_built - checks for built-in commands and execute them
- * @args - array of arguments
+ * @args: array of arguments
+ * @env: array of env vars
  */
 void fuji_built(char **args, char **env)
 {
