@@ -2,6 +2,8 @@
 #define FUJI_HEADER
 
 #define _GNU_SOURCE
+#include <stdarg.h>
+#include <errno.h>
 #include <sys/wait.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,6 +27,9 @@ typedef struct linked_PATH
 	struct linked_PATH *next;
 } lp_t;
 
+void inline_mode(int argc, char **argv);
+void free_array(char **array);
+void free_cptrn(int, const unsigned int n, ...);
 lp_t *linked_PATH(void);
 lp_t *add_node_end(lp_t **head, char *str);
 void ls_path(void);

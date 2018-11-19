@@ -5,12 +5,13 @@
 * Return: a pointer to an array
 */
 
-char  **strtow(char *str)
+char **strtow(char *str)
 {
 	char **words;
 	int count;
-	count = word_count(str);	
-		if (count == -1)
+
+	count = word_count(str);
+		if (count <= 0)
 		return (NULL);
 
 	words = malloc(sizeof(char *) * (count + 1));
@@ -32,13 +33,14 @@ void cpy_str(int end, char *s, char **word_box)
 {
 	int i;
 
-	if (!((*word_box) = malloc(sizeof(char) * end + 1)))
+	(*word_box) = malloc(sizeof(char) * end + 1);
+	if (!(*word_box))
 	{
 		perror("Error: malloc\n");
 		free(word_box);
 		exit(-1);
 	}
-	
+
 	for (i = 0; i < end; i += 1)
 		(*word_box)[i] = s[i];
 	(*word_box)[i] = '\0';
@@ -84,8 +86,9 @@ int word_count(char *str)
 }
 /**
 * get_word - get a word from a string to copy
+* @words: an array of words
 * @str: a pointer to the string
-* Return: the array of words 
+* Return: the array of words
 */
 void get_word(char **words, char *str)
 {
@@ -104,7 +107,7 @@ void get_word(char **words, char *str)
 			}
 			if (found)
 			{
-				
+
 				cpy_str(i - start, str + start, words + count);
 				if (!(words + count))
 					exit(-2);
