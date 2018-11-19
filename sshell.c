@@ -1,12 +1,12 @@
 #include "fuji.h"
 
 /**
-* main - Entry point
-* @argc: argument count
-* @argv: list of arguments
-* @env: list of env vars
-* Return: Always 0 (Success)
-*/
+ * main - Entry point
+ * @argc: argument count
+ * @argv: list of arguments
+ * @env: list of env vars
+ * Return: Always 0 (Success)
+ */
 
 int main(int argc, char *argv[], char **env)
 {
