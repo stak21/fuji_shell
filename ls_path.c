@@ -17,7 +17,7 @@ void ls_path(void)
 			path[i] = '\n';
 		i += 1;
 	}
-	write (2, path, _strlen(path));
+	write(2, path, _strlen(path));
 	free(path);
 }
 
