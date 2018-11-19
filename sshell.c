@@ -17,6 +17,7 @@ int main(int argc, char *argv[], char **env)
 	pid_t parent;
 	(void)argc;
 	(void)argv;
+
 	while (1)
 	{
 		if (isatty(fileno(stdin)))

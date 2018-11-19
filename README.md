@@ -8,29 +8,29 @@
 
 ------
 
-Fuji works like any other shell, like bash or zsh. 
+Fuji works like any other shell, like bash or zsh.
 
 Fuji builds successfully with a GCC 4.8.8 compiler or later. Fuji can compile using `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o simple_shell`.
 
-To start up Fuji, simply type 
+To start up Fuji, simply type
 ```
 ./simple_shell
-``` 
+```
 in the terminal.
 
 #### Syntax Overview
 
 ------
 
-Like other shells, Fuji is used by given it commands. Every Fuji command follows the same general syntax: `command name {arguments}`. The command is executed by writing the name of the command followed by any arguments. 
+Like other shells, Fuji is used by given it commands. Every Fuji command follows the same general syntax: `command name {arguments}`. The command is executed by writing the name of the command followed by any arguments.
 
 ```
 echo Hello Fuji
 ```
 
-Above will run the `echo` command, which will write its arguments `Hello Fuji` to  the standard output. 
+Above will run the `echo` command, which will write its arguments `Hello Fuji` to  the standard output.
 
-For more information on echo, you can use the `man` command. The `man` command displays a manual page of a given command, system call, libraries, and important files. 
+For more information on echo, you can use the `man` command. The `man` command displays a manual page of a given command, system call, libraries, and important files.
 
 ```
 man echo
@@ -49,7 +49,7 @@ Any program in your computer can be used as a command in Fuji by typing the file
 /Desktop/Holberton/_echo Hello Holberton
 ```
 
-##### Command Seperation 
+##### Command Seperation
 
 Commands and any arguments are seperated by a ` ' '` . Commands are read and executed from left to right and end with a newline (i.e Return Key).
 
@@ -82,7 +82,7 @@ The `ls` commands lists all directories and files in the current working directo
 
 `pwd` - prints out the current working directory
 
-#### Builtins 
+#### Builtins
 
 ------
 
@@ -90,16 +90,16 @@ There are several builtins programmed into the Fuji. Below is a description and 
 
 ##### env
 
-To print out a list of all the environmental variables, the builtin `env` can be used. Each environmental variable and its value is printed out with a syntax of `key=value`. Each variable is separated by a new line. 
+To print out a list of all the environmental variables, the builtin `env` can be used. Each environmental variable and its value is printed out with a syntax of `key=value`. Each variable is separated by a new line.
 ```
 env
 ```
 ##### exit
 
-To exit out of the shell, the user may use the `exit` builtin. 
+To exit out of the shell, the user may use the `exit` builtin.
 
 ```
-exit 
+exit
 ```
 
 #### Exiting commands and Fuji
@@ -108,4 +108,4 @@ exit
 
 To exit out of a process or command, `ctrl c` is used. Control-C interrupts a process and causes it to abort.
 
-To exit out of the hsh shell, the user can do one of the following, `ctrl D` or `exit `. When exiting with `ctrl D`, an exit status of 0 is given. 
+To exit out of the hsh shell, the user can do one of the following, `ctrl D` or `exit `. When exiting with `ctrl D`, an exit status of 0 is given.
