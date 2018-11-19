@@ -5,78 +5,41 @@
 * Return: Always 0 (Success)
 */
 
-int main(int argc, char **argv)
+int main(void)
 {
-	int ind = 0;
 	char *ptr = NULL;
 	char **string = NULL;
 	size_t size = 0;
-	int len;
-	int status;
+	int len, status;
 	pid_t parent;
-	int non_interactive;
-
-	non_interactive = 0;
-
-	/** inline */
-	if (argc > 1)
-	{
-		if (execve(argv[1], argv + 1, NULL) == -1)
-		{
-			perror("./shell");
-			exit(0);
-		}
-	}
 
 	while (1)
 	{
-			if (isatty(fileno(stdin)))
-				write(2, "Fuji$ ", 6);
-			if((len = getline(&ptr, &size, stdin)) == EOF)
+		if (isatty(fileno(stdin)))
+			write(2, "Fuji$ ", 6);
+		len = getline(&ptr, &size, stdin);
+		if (len == EOF)
+			free_cptrn(-1, 1, ptr);
+		ptr[len - 1] = '\0';
+		parent = fork();
+		if (parent == 0)
+		{
+			if (*ptr == '\0' || (*ptr == '.' && ptr[1] == '\0'))
+				free_cptrn(0, 1, ptr);
+			string = strtow(ptr);
+			if (!string)
+				free_cptrn(0, 1, ptr);
+			check_path(string);
+			if (execve(string[0], string, NULL) == -1)
 			{
-				free(ptr);
-				exit(-1);
+				perror("./shell: ");
+				free_array(string);
+				free_cptrn(0, 1, ptr);
 			}
-			ptr[len - 1] = '\0';
-			printf("hillo\n");
-			parent = fork();	
-			if (parent == 0)
-			{
-				if (*ptr == '\0' || (*ptr == '.' && ptr[1] =='\0'))
-				{
-					free(ptr);
-					exit(0);
-				}
-				if (!(string = strtow(ptr)))
-				{
-					free(ptr);
-					exit(0);
-				}
-				check_path(string);
-				if (string == NULL)
-					perror("Error: string is NULL\n");
-				if (execve(string[0], string, NULL) == -1)
-				{
-					perror("./shell");
-					while (string[ind])
-					{
-						free(string[ind]);
-						ind += 1;
-					}
-					free(string);			
-					free(ptr);
-					exit(0);
-				}
-			}
-			else
-			{
-				wait(&status);
-				if (status != 0 || non_interactive)
-					break;
-			}
+		}
+		else
+			if(!wait(&status))
+				break;
 	}
-
-			printf("ending\n");	
 	return (0);
-
 }
