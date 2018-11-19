@@ -36,7 +36,7 @@ int main(int argc, char *argv[], char **env)
 		parent = fork();
 		if (parent == 0)
 		{
-			check_path(string);
+			check_path(string, env);
 			if (execve(string[0], string, NULL) == -1)
 			{
 				perror("./shell: ");

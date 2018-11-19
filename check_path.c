@@ -3,15 +3,16 @@
 /**
  * check_path - check if command is in the path directories
  * @string: an array of strings
+ * @env: an array of env vars
  * Return: pointer to the linked list
  */
-void check_path(char **string)
+void check_path(char **string, char **env)
 {
 	char *str1, *str2, *path;
 	int i, start, last;
 
 	str1 = str_concat("/", string[0]);
-	path = _getenv("PATH");
+	path = _getenv("PATH", env);
 	if (path == NULL)
 	{
 		free(str1);
