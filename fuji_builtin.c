@@ -1,20 +1,19 @@
 #include "fuji.h"
-extern char **environ;
 
 /**
  * fuji_env - prints environmental variable
  * @args - array of arguments
  */
-void fuji_env(char **args)
+void fuji_env(char **args, char **env)
 {
 	int i, len;
 	(void)args;
 
 	i = 0;
-	while (environ[i] != NULL)
+	while (env[i] != NULL)
 	{
-		len = strlen(environ[i]);
-		write(2, environ[i], len);
+		len = strlen(env[i]);
+		write(2, env[i], len);
 		write(2, "\n", 1);
 		i++;
 	}
@@ -24,42 +23,18 @@ void fuji_env(char **args)
  * fuji_exit - exits the shells
  * @args - array of arguments
  */
-void fuji_exit(char **args)
+void fuji_exit(char **args, char **env)
 {
 	(void)args;
+	(void)env;
 
-	exit (98);
+	exit(98);
 }
-/**
- * setenv - initialize a  new environment variable, or modify one
- * @args - array of aguments
- *
-void fuji_setenv(char **args)
-{
-	extern char **environ;
-	char *var;
-	int i;
-
-	if (args == NULL)
-		return;
-	var = str_concat(arg[1], arg[2]);
-	i = 0;
-	while (environ[i] != NULL)
-	{
-		if (_strcmp(var, environ[i]) == 1)
-			env[i] = var;
-		i++;
-	}
-		
-		len = strlen(environ[i]);
-		write(2, environ[i], len);
-		write(2, "\n", 1);
-}*/
 /**
  * fuji_built - checks for built-in commands and execute them
  * @args - array of arguments
  */
-void fuji_built(char **args)
+void fuji_built(char **args, char **env)
 {
 	built_t b_ins[] = {
 		{"env", fuji_env},
@@ -74,7 +49,7 @@ void fuji_built(char **args)
 	{
 		if (_strcmp2(args[0], b_ins[i].cmd) == 0)
 		{
-			b_ins[i].f(args);
+			b_ins[i].f(args, env);
 			break;
 		}
 	}
