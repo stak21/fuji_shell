@@ -37,12 +37,12 @@ typedef struct linked_PATH
 typedef struct builtins
 {
 	char *cmd;
-	void (*f)(char **args);
+	void (*f)(char **args, char **env);
 } built_t;
 /* Function Declarations for builtin shell commands */
-void fuji_env(char **args);
-void fuji_exit(char **args);
-void fuji_built(char **args);
+void fuji_env(char **args, char **env);
+void fuji_exit(char **args, char **env);
+void fuji_built(char **args, char **env);
 
 void inline_mode(int argc, char **argv);
 void free_array(char **array);
@@ -64,4 +64,5 @@ char *str_concat(char *s1, char *s2);
 void check_path(char **string);
 void free_lp(char *str1, lp_t *head);
 void signal_handler(int signo);
+void err_exit(int status);
 #endif
