@@ -2,6 +2,8 @@
 #define FUJI_HEADER
 
 #define _GNU_SOURCE
+#include <stdarg.h>
+#include <errno.h>
 #include <sys/wait.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,10 +40,13 @@ typedef struct builtins
 	void (*f)(char **args);
 } built_t;
 /* Function Declarations for builtin shell commands */
-void fuji_env(char **args);
-void fuji_exit(char **args);
-void fuji_built(char **args);
+void fuji_env(char **args, char **env);
+void fuji_exit(char **args, char **env);
+void fuji_built(char **args, char **env);
 
+void inline_mode(int argc, char **argv);
+void free_array(char **array);
+void free_cptrn(int, const unsigned int n, ...);
 lp_t *linked_PATH(void);
 lp_t *add_node_end(lp_t **head, char *str);
 void ls_path(void);
