@@ -13,7 +13,7 @@ int fuji_env(char **args, char **env)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		len = strlen(env[i]);
+		len = _strlen(env[i]);
 		write(STDOUT_FILENO, env[i], len);
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
