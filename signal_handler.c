@@ -11,7 +11,4 @@ void signal_handler(int signo)
 		write(STDOUT_FILENO, "\n", 1);
 		write(STDOUT_FILENO, "Fuji$ ", 6);
 	}
-
-	if (signo == SIGCHLD)
-		exit(0);
 }
