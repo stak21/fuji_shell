@@ -30,10 +30,14 @@ int fuji_env(char **args, char **env)
  */
 int fuji_exit(char **args, char **env)
 {
+	int status;
 	(void)env;
 	
+	status = 0;
+	if (args[1])
+		status = _atoi(args[1]);
 	free_array(args);
-	exit(0);
+	exit(status);
 }
 /**
  * fuji_built - checks for built-in commands and execute them
