@@ -108,4 +108,4 @@ exit
 
 To exit out of a process or command, `ctrl c` is used. Control-C interrupts a process and causes it to abort.
 
-To exit out of the hsh shell, the user can do one of the following, `ctrl D` or `exit `. When exiting with `ctrl D`, an exit status of 0 is given.
+To exit out of the fuji shell, the user can do one of the following, `ctrl D` or `exit `. When exiting with `ctrl D`, an exit status of 0 is given.
