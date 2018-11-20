@@ -21,7 +21,7 @@ int main(int argc, char *argv[], char **env)
 	{
 		ptr = NULL;
 		size = 0;
-		if (isatty(fileno(stdin)))
+		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "Fuji$ ", 6);
 		signal(SIGINT, signal_handler);
 		len = getline(&ptr, &size, stdin);
