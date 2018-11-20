@@ -28,7 +28,7 @@ int main(int argc, char *argv[], char **env)
 			free_cptrn(-1, 1, ptr);
 		ptr[len - 1] = '\0';
 		if (*ptr == '\0' || (*ptr == '.' && ptr[1] == '\0'))
-			free_cptrn(0, 1, ptr);
+			continue;
 		string = strtow(ptr);
 		if (!string)
 			free_cptrn(0, 1, ptr);
