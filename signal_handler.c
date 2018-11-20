@@ -8,8 +8,8 @@ void signal_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
-		write(2, "\n", 1);
-		write(2, "Fuji$ ", 6);
+		write(STDOUT_FILENO, "\n", 1);
+		write(STDOUT_FILENO, "Fuji$ ", 6);
 	}
 
 	if (signo == SIGCHLD)
