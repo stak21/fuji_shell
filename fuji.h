@@ -41,4 +41,5 @@ char *str_concat(char *s1, char *s2);
 void check_path(char **string, char **env);
 void signal_handler(int signo);
 void err_exit(char *, int status);
+int prompt(char **ptr);
 #endif
