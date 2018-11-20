@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "fuji.h"
 
 /**
  * _atoi - convert a string to an integer
