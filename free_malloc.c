@@ -23,6 +23,10 @@ void free_cptrn(int status, const unsigned int n, ...)
 	}
 
 	va_end(args);
+	if (status == 99)
+		return;
+
+	printf("exiting\n");
 	exit(status);
 }
 

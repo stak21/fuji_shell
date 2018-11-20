@@ -4,11 +4,11 @@
  * fuji_env - prints environmental variable
  * @args: array of arguments
  * @env: array of env vars
+ * Return: success: 1
  */
-void fuji_env(char **args, char **env)
+int fuji_env(char **args, char **env)
 {
 	int i, len;
-	(void)args;
 
 	i = 0;
 	while (env[i] != NULL)
@@ -18,26 +18,31 @@ void fuji_env(char **args, char **env)
 		write(2, "\n", 1);
 		i++;
 	}
+	free_array(args);
+	return (1);
 }
 
 /**
  * fuji_exit - exits the shells
  * @args: array of arguments
  * @env: array of env vars
+ * Return: success: 1
  */
-void fuji_exit(char **args, char **env)
+int fuji_exit(char **args, char **env)
 {
 	(void)args;
 	(void)env;
 
-	_exit(-1);
+	free_array(args);
+	exit(-1);
 }
 /**
  * fuji_built - checks for built-in commands and execute them
  * @args: array of arguments
  * @env: array of env vars
+ * Return: success: 1
  */
-void fuji_built(char **args, char **env)
+int fuji_built(char **args, char **env)
 {
 	built_t b_ins[] = {
 		{"env", fuji_env},
@@ -47,13 +52,14 @@ void fuji_built(char **args, char **env)
 	int i;
 
 	if (args[0] == NULL)
-		return;
+		return (0);
 	for (i = 0; i < 2; i++)
 	{
 		if (_strcmp2(args[0], b_ins[i].cmd) == 0)
 		{
-			b_ins[i].f(args, env);
+		return (b_ins[i].f(args, env));
 			break;
 		}
 	}
+	return (0);
 }
