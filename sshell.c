@@ -20,6 +20,8 @@ int main(int argc, char *argv[], char **env)
 
 	while (1)
 	{
+		ptr = NULL;
+		size = 0;
 		if (isatty(fileno(stdin)))
 			write(2, "Fuji$ ", 6);
 		signal(SIGINT, signal_handler);
@@ -28,11 +30,14 @@ int main(int argc, char *argv[], char **env)
 			free_cptrn(-1, 1, ptr);
 		ptr[len - 1] = '\0';
 		if (*ptr == '\0' || (*ptr == '.' && ptr[1] == '\0'))
+		{
+			free_cptrn(99, 1, ptr);
 			continue;
+		}
 		string = strtow(ptr);
-		if (!string)
-			free_cptrn(0, 1, ptr);
-		fuji_built(string, env);
+		free_cptrn(99, 1, ptr);
+		if (fuji_built(string, env))
+			continue;
 		parent = fork();
 		if (parent == 0)
 		{
@@ -41,12 +46,15 @@ int main(int argc, char *argv[], char **env)
 			{
 				perror("./shell: ");
 				free_array(string);
-				free_cptrn(0, 1, ptr);
+				exit(0);
 			}
 		}
 		else
+		{
+			free_array(string);
 			if (!wait(&status))
 				break;
+		}
 	}
 	return (0);
 }
