@@ -6,6 +6,7 @@
 
 void err_exit(char *argv, int status)
 {
+	(void)status;
 	perror(argv);
-	exit(status);
+	exit(0);
 }

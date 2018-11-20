@@ -25,7 +25,7 @@ void free_cptrn(int status, const unsigned int n, ...)
 	va_end(args);
 	if (status == 99)
 		return;
-	exit(status);
+	exit(0);
 }
 
 /**
@@ -37,7 +37,7 @@ void free_array(char **array)
 	int i;
 
 	if (!array)
-		exit(-1);
+		exit(0);
 	i = 0;
 
 	while (array[i])

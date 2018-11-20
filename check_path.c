@@ -16,7 +16,7 @@ void check_path(char **string, char **env)
 	if (path == NULL)
 	{
 		free(str1);
-		exit(-1);
+		exit(0);
 	}
 	start = i = last = 0;
 	while (path[i])

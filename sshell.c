@@ -17,6 +17,7 @@ int main(int argc, char *argv[], char **env)
 	pid_t parent;
 	(void)argc;
 
+
 	while (1)
 	{
 		ptr = NULL;
@@ -60,5 +61,6 @@ int main(int argc, char *argv[], char **env)
 				break;
 		}
 	}
+	printf("hi\n");
 	return (0);
 }

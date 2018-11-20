@@ -34,7 +34,7 @@ int fuji_exit(char **args, char **env)
 	(void)env;
 
 	free_array(args);
-	exit(-1);
+	exit(0);
 }
 /**
  * fuji_built - checks for built-in commands and execute them

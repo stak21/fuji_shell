@@ -38,7 +38,7 @@ void cpy_str(int end, char *s, char **word_box)
 	{
 		perror("Error: malloc\n");
 		free(word_box);
-		exit(-1);
+		exit(0);
 	}
 
 	for (i = 0; i < end; i += 1)
@@ -107,10 +107,9 @@ void get_word(char **words, char *str)
 			}
 			if (found)
 			{
-
 				cpy_str(i - start, str + start, words + count);
 				if (!(words + count))
-					exit(-2);
+					exit(0);
 				count += 1;
 				start = i + 1;
 				found = 0;
