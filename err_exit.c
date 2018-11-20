@@ -4,8 +4,8 @@
 * @status: exits with this status
 */
 
-void err_exit(int status)
+void err_exit(char *argv, int status)
 {
-	perror("./shell: ");
+	perror(argv);
 	exit(status);
 }

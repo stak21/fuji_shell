@@ -16,14 +16,13 @@ int main(int argc, char *argv[], char **env)
 	int len, status;
 	pid_t parent;
 	(void)argc;
-	(void)argv;
 
 	while (1)
 	{
 		ptr = NULL;
 		size = 0;
 		if (isatty(fileno(stdin)))
-			write(2, "Fuji$ ", 6);
+			write(STDOUT_FILENO, "Fuji$ ", 6);
 		signal(SIGINT, signal_handler);
 		len = getline(&ptr, &size, stdin);
 		if (len == EOF)
@@ -49,7 +48,7 @@ int main(int argc, char *argv[], char **env)
 			check_path(string, env);
 			if (execve(string[0], string, NULL) == -1)
 			{
-				perror("./shell: ");
+				perror(*argv);
 				free_array(string);
 				exit(0);
 			}

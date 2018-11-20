@@ -63,5 +63,5 @@ char *str_concat(char *s1, char *s2);
 void check_path(char **string, char **env);
 void free_lp(char *str1, lp_t *head);
 void signal_handler(int signo);
-void err_exit(int status);
+void err_exit(char *, int status);
 #endif
