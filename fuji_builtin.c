@@ -32,7 +32,7 @@ int fuji_exit(char **args, char **env)
 {
 	int status;
 	(void)env;
-	
+
 	status = 0;
 	if (args[1])
 		status = _atoi(args[1]);
