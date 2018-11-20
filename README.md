@@ -10,11 +10,11 @@
 
 Fuji works like any other shell, like bash or zsh.
 
-Fuji builds successfully with a GCC 4.8.8 compiler or later. Fuji can compile using `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o simple_shell`.
+Fuji builds successfully with a GCC 4.8.8 compiler or later. Fuji can compile using `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o fuji_shell`.
 
 To start up Fuji, simply type
 ```
-./simple_shell
+./fuji_shell
 ```
 in the terminal.
 
