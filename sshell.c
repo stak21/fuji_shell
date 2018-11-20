@@ -35,6 +35,11 @@ int main(int argc, char *argv[], char **env)
 			continue;
 		}
 		string = strtow(ptr);
+		if (!string)
+		{
+			free_cptrn(99, 1, ptr);
+			continue;
+		}
 		free_cptrn(99, 1, ptr);
 		if (fuji_built(string, env))
 			continue;
