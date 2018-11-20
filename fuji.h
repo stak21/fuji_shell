@@ -42,4 +42,5 @@ void check_path(char **string, char **env);
 void signal_handler(int signo);
 void err_exit(char *, int status);
 int prompt(char **ptr);
+int _atoi(char *s);
 #endif
