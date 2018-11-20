@@ -25,6 +25,5 @@ char *_getenv(const char *name, char **env)
 		}
 		i++;
 	}
-	printf("Error\n");
 	return (NULL);
 }
