@@ -30,7 +30,7 @@ void fuji_exit(char **args, char **env)
 	(void)args;
 	(void)env;
 
-	exit(98);
+	_exit(-1);
 }
 /**
  * fuji_built - checks for built-in commands and execute them
